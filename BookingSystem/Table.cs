@@ -50,5 +50,17 @@
         {
             Console.WriteLine($"Номер стола {NumberTable} Вместимость {NumberSeats}");
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Table table &&
+                   NumberTable == table.NumberTable &&
+                   NumberSeats == table.NumberSeats;
+        }
+
+        public override string ToString()
+        {
+            return $"Стол #{NumberTable} вместимость {NumberSeats} чел.";
+        }
     }
 }
