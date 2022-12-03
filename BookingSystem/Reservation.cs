@@ -34,6 +34,20 @@
             Console.WriteLine($"Колличество гостей : {NumberOfGuest} ");
         }
 
+        public override string ToString()
+        {
+            return $"Reservation #{NumberReservation} Date {DateReservation:D} ";
+        }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Reservation reservation &&
+                   NumberReservation==reservation.NumberReservation &&
+                   NumberTable==reservation.NumberTable &&
+                   DateReservation == reservation.DateReservation &&
+                   NumberOfGuest==reservation.NumberOfGuest &&
+                   NameGuest==reservation.NameGuest &&
+                   TelephoneNumberGuest == reservation.TelephoneNumberGuest;
+        }
     }
 }
