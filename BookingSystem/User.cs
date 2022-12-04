@@ -101,7 +101,7 @@ namespace BookingSystem
             return reservations;
         }
 
-        private int GeneratesNumberReservation()
+        public int GeneratesNumberReservation()
         {
             Random rnd = new Random();
             int numberReservation;
@@ -115,11 +115,12 @@ namespace BookingSystem
             return numberReservation;
         }
 
-        public void AddNewReservation(int numberTable, string nameGuest, string telephoneNumberGuest, DateTime dateReservation, int numberOfGuest)
+        public void AddNewReservation(Reservation newReservation)
         {
-            if (!ChekReservSpecificDay(dateReservation, numberTable) && CheckingTable(numberTable))
+            if (!ChekReservSpecificDay(newReservation.DateReservation, newReservation.NumberTable) 
+                && CheckingTable(newReservation.NumberTable))
             {
-                DataFile.Reservations.Add(new Reservation(numberTable, GeneratesNumberReservation(), nameGuest, telephoneNumberGuest, dateReservation, numberOfGuest));
+                DataFile.Reservations.Add(newReservation);
                 Console.WriteLine("\nБронь записана : ");
             }
 
@@ -159,7 +160,7 @@ namespace BookingSystem
             {
                 {
                     Console.WriteLine("");
-                    reserv.ShowFullInfoReservation();
+                    reserv.ToString();
                 }
             }
         }
