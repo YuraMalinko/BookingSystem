@@ -28,7 +28,7 @@ while (EnterHomeMenu != 0)
                 int numberTable = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Введите вместимость стола : ");
                 int numberSeats = Convert.ToInt32(Console.ReadLine());
-                administrator.AddNewTable(numberTable, numberSeats);
+                administrator.AddNewTable(new Table(numberTable, numberSeats));
             }
             else if (EnterTableMenu == 2)
             {
@@ -36,7 +36,7 @@ while (EnterHomeMenu != 0)
 
                 foreach(Table table in administrator.DataFile.Tables)
                 {
-                    table.ShowInfoTable();
+                    Console.WriteLine(table);
                 }
 
                 Console.Write("Введите номер стола для удаления (для отмены введите 0) : ");
@@ -53,7 +53,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Table table in administrator.DataFile.Tables)
                 {
-                    table.ShowInfoTable();
+                    Console.WriteLine(table);
                 }
 
                 Console.Write("Введите номер стола ,чтобы показать  все его брони ");
@@ -61,7 +61,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificTable(numberTable))
                 {
-                    reservation.ShowFullInfoReservation();
+                    reservation.ToString();
                 }
             }
             else
@@ -93,6 +93,7 @@ while (EnterHomeMenu != 0)
         {
             if (EnterReservationMenu == 1)
             {
+                int numberReservation = administrator.GeneratesNumberReservation();
                 Console.Write("Введите количество гостей : ");
                 int numberOfGuest = Convert.ToInt32(Console.ReadLine());
                 Console.Write("\nВведите интересующую Вас дату (в формате дд.ММ.гггг) : ");
@@ -100,7 +101,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Table table in administrator.ReturnCorrectTable(dataTime, numberOfGuest))
                 {
-                    table.ShowInfoTable();
+                    Console.WriteLine(table);
                 }
 
                 Console.Write("Введите номер стола : ");
@@ -109,7 +110,7 @@ while (EnterHomeMenu != 0)
                 string nameGuest = Convert.ToString(Console.ReadLine());
                 Console.Write("Введите контактный номер гостя : ");
                 string telephoneNumberGuest = Convert.ToString(Console.ReadLine());
-                administrator.AddNewReservation(numberTable, nameGuest, telephoneNumberGuest, dataTime, numberOfGuest);
+                administrator.AddNewReservation(new Reservation(numberTable, numberReservation, nameGuest, telephoneNumberGuest, dataTime, numberOfGuest));
             }
             else if (EnterReservationMenu == 2)
             {
@@ -136,7 +137,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificDay(dataTime))
                 {
-                    reservation.ShowFullInfoReservation();
+                    reservation.ToString();
                 }
             }
             else if (EnterReservationMenu == 5)
@@ -148,7 +149,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificTable(numberTable))
                 {
-                    reservation.ShowFullInfoReservation();
+                    reservation.ToString();
                 }
             }
             else if (EnterReservationMenu == 6)
@@ -159,7 +160,7 @@ while (EnterHomeMenu != 0)
                 int numberSeats = Convert.ToInt32(Console.ReadLine());
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificDayAndSeatz(dataTime, numberSeats))
                 {
-                    reservation.ShowFullInfoReservation();
+                    reservation.ToString();
                 }
             }
             else
