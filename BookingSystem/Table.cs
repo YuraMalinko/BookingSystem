@@ -31,7 +31,7 @@
             }
             private set
             {
-                if (value <= 0 && value > 20)
+                if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Number of seats incorrect");
                 }
@@ -46,11 +46,6 @@
             NumberSeats = numberSeats;
         }
 
-        public void ShowInfoTable()
-        {
-            Console.WriteLine($"Номер стола {NumberTable} Вместимость {NumberSeats}");
-        }
-
         public override bool Equals(object? obj)
         {
             return obj is Table table &&
@@ -60,7 +55,7 @@
 
         public override string ToString()
         {
-            return $"Стол #{NumberTable} вместимость {NumberSeats} чел.";
+            return $"Table #{NumberTable} / number seats : {NumberSeats}";
         }
     }
 }
