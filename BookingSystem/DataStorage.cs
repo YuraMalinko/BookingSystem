@@ -15,7 +15,7 @@ namespace BookingSystem
             {
                 Tables = new List<Table>();
                 Reservations = new List<Reservation>();
-                Path = "../DataStorage.txt";
+                Path = @".\DataStorage.txt";
             }
         }
 
@@ -37,11 +37,10 @@ namespace BookingSystem
             {
                 using (StreamReader file = new StreamReader(Path))
                 {
-                    string jsn = file.ReadLine();
-                    Tables = JsonSerializer.Deserialize<List<Table>>(jsn);
-                    jsn = file.ReadLine();
-                    Reservations = JsonSerializer.Deserialize<List<Reservation>>(jsn);
-
+                    string jsn = file.ReadLine()!;
+                    Tables = JsonSerializer.Deserialize<List<Table>>(jsn)!;
+                    jsn = file.ReadLine()!;
+                    Reservations = JsonSerializer.Deserialize<List<Reservation>>(jsn)!;
                 }
             }
         }
