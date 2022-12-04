@@ -51,7 +51,7 @@ namespace BookingSystem
 
             foreach (Table table in DataFile.Tables)
             {
-                table.ShowInfoTable();
+                Console.WriteLine(table);
             }
         }
 
