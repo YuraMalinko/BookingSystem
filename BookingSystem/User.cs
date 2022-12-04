@@ -1,4 +1,4 @@
-﻿namespace BookingSystem
+namespace BookingSystem
 {
     public class User
     {
@@ -15,13 +15,12 @@
             return DataFile.Tables.Exists(table => table.NumberTable == numberTable);
         }
 
-
-        public void AddNewTable(int numberTable, int numberSeats)
+        public void AddNewTable(Table newTable)
         {
-            if (!CheckingTable(numberTable))
+            if (!CheckingTable(newTable.NumberTable))
             {
-                DataFile.Tables.Add(new Table(numberTable, numberSeats));
-                Console.WriteLine($"\nСтол с номером {numberTable} создан !");
+                DataFile.Tables.Add(newTable);
+                Console.WriteLine($"\nСтол с номером {newTable.NumberTable} создан !");
             }
             else
             {
