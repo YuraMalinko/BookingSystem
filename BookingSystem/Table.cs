@@ -1,6 +1,6 @@
 ﻿namespace BookingSystem
 {
-    public class Table
+    public class Table : IComparable<Table>
     {
         private int _numberTable;
 
@@ -56,6 +56,22 @@
         public override string ToString()
         {
             return $"Table #{NumberTable} / number seats : {NumberSeats}";
+        }
+
+        public int CompareTo(Table table)
+        {
+            if (table.NumberTable > NumberTable)
+            {
+                return -1;
+            }
+            else if (table.NumberTable < NumberTable)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
