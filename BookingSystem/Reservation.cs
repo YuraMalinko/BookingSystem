@@ -1,6 +1,6 @@
 ﻿namespace BookingSystem
 {
-    public class Reservation
+    public class Reservation:IComparable<Reservation>
     {
         public int NumberReservation { get; private set; }
 
@@ -42,6 +42,22 @@
                    NumberOfGuest==reservation.NumberOfGuest &&
                    NameGuest==reservation.NameGuest &&
                    TelephoneNumberGuest == reservation.TelephoneNumberGuest;
+        }
+
+        public int CompareTo(Reservation reservation)
+        {
+            if (reservation.NumberReservation > NumberReservation)
+            {
+                return -1;
+            }
+            else if(reservation.NumberReservation < NumberReservation)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
