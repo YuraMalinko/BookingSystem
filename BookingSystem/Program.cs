@@ -1,8 +1,7 @@
 ﻿using BookingSystem;
+using System.ComponentModel.DataAnnotations.Schema;
 
 User administrator = new User();
-
-
 Console.WriteLine("Главное меню :");
 Console.WriteLine("1) Столы");
 Console.WriteLine("2) Брони");
@@ -115,7 +114,11 @@ while (EnterHomeMenu != 0)
             else if (EnterReservationMenu == 2)
             {
                 Console.WriteLine("");
-                administrator.ShowAllReservations();
+                
+                foreach(Reservation reservation in administrator.DataFile.Reservations)
+                {
+                    Console.WriteLine(reservation);
+                }
 
                 Console.Write("Введите номер брони для удаления (для отмены введите 0) : ");
                 int numberReservation = Convert.ToInt32(Console.ReadLine());
@@ -128,7 +131,10 @@ while (EnterHomeMenu != 0)
             else if (EnterReservationMenu == 3)
             {
                 Console.WriteLine("");
-                administrator.ShowAllReservations();
+                foreach (Reservation reservation in administrator.DataFile.Reservations)
+                {
+                    Console.WriteLine(reservation);
+                }
             }
             else if (EnterReservationMenu == 4)
             {
@@ -137,7 +143,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificDay(dataTime))
                 {
-                    reservation.ToString();
+                    Console.WriteLine(reservation);
                 }
             }
             else if (EnterReservationMenu == 5)
@@ -149,7 +155,7 @@ while (EnterHomeMenu != 0)
 
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificTable(numberTable))
                 {
-                    reservation.ToString();
+                    Console.WriteLine(reservation);
                 }
             }
             else if (EnterReservationMenu == 6)
@@ -160,7 +166,7 @@ while (EnterHomeMenu != 0)
                 int numberSeats = Convert.ToInt32(Console.ReadLine());
                 foreach (Reservation reservation in administrator.ReturnReservationsForSpecificDayAndSeatz(dataTime, numberSeats))
                 {
-                    reservation.ToString();
+                    Console.WriteLine(reservation);
                 }
             }
             else
