@@ -20,6 +20,7 @@ namespace BookingSystem
             if (!CheckingTable(newTable.NumberTable))
             {
                 DataFile.Tables.Add(newTable);
+                DataFile.Tables.Sort();
                 Console.WriteLine($"\nСтол с номером {newTable.NumberTable} создан !");
             }
             else
@@ -121,6 +122,7 @@ namespace BookingSystem
                 && CheckingTable(newReservation.NumberTable))
             {
                 DataFile.Reservations.Add(newReservation);
+                DataFile.Reservations.Sort();
                 Console.WriteLine("\nБронь записана : ");
             }
 
